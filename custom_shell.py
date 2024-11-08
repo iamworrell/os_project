@@ -5,11 +5,11 @@ print("Welcome to The terminal")
 initial_input = input("")
 
 #Convert all input to string
-input = str(initial_input)
+user_input = str(initial_input)
 
 #format input
 #remove all blank space
-noBlankSpace = input.replace(" ", "")
+noBlankSpace = user_input.replace(" ", "")
 #convert input to lowercase
 validated_input = noBlankSpace.lower()
 
@@ -22,3 +22,15 @@ if validated_input.find("create", 0) == 0:
     file_path = os.path.join(current_dir, textFileName + ".txt")
     open(file_path, 'w')
     print("File Create")
+
+
+#rename file
+#check if input includes the keyword create
+if validated_input.find("rename", 0) == 0:
+  rename_file_input = input("")
+  print("renaming")
+  #current_dir = os.path.dirname(__file__)
+  #file_path = os.path.join(current_dir, textFileName + ".txt")
+  #open(file_path, 'w')
+  #print("File Create")
+  #os.rename()

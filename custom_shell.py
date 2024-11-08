@@ -22,15 +22,3 @@ if validated_input.find("create", 0) == 0:
     file_path = os.path.join(current_dir, textFileName + ".txt")
     open(file_path, 'w')
     print("File Create")
-
-
-#rename file
-#check if input includes the keyword create
-if validated_input.find("rename", 0) == 0:
-  rename_file_input = input("")
-  print("renaming")
-  #current_dir = os.path.dirname(__file__)
-  #file_path = os.path.join(current_dir, textFileName + ".txt")
-  #open(file_path, 'w')
-  #print("File Create")
-  #os.rename()

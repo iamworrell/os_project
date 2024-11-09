@@ -23,6 +23,26 @@ if validated_input.find("create", 0) == 0:
     open(file_path, 'w')
     print("File Create")
 
+#Delete File Command
+#Check if input includes the keyword 'delete' at the start of the input
+elif validated_input.find("delete", 0) == 0:
+    #remove all blank space
+    noBlankSpace = validated_input.replace(" ", "")
+
+    #Remove 'delete' from input to get the name of the file to delete
+    text_file_name = noBlankSpace[6:]
+    
+    #Get the path of the file to delete in the current directory
+    current_dir = os.path.dirname(__file__)
+    file_path = os.path.join(current_dir, text_file_name + ".txt")
+    
+    #Check if the file exists before trying to delete it
+    if os.path.exists(file_path):
+        os.remove(file_path) #Delete the file
+        print("File Deleted") #Confirm that the file has been deleted
+    else:
+        print("Error: File does not exist") #Display an error if file is not found
+
 #rename file feature
 command = ''
 original_file_name = ''

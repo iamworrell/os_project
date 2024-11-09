@@ -23,9 +23,14 @@ if validated_input.find("create", 0) == 0:
     open(file_path, 'w')
     print("File Create")
 
+
+    
 #Delete File Command
 #Check if input includes the keyword 'delete' at the start of the input
 elif validated_input.find("delete", 0) == 0:
+    #Delete File Command
+    #Check if input includes the keyword 'delete' at the start of the input
+    elif validated_input.find("delete", 0) == 0:
     #remove all blank space
     noBlankSpace = validated_input.replace(" ", "")
 

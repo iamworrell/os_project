@@ -16,6 +16,7 @@ while exit != 1:
   #convert input to lowercase
   validated_input = user_input.lower()
 
+
   #check if input includes the keyword create
   if validated_input.find("create", 0) == 0:
       #remove all blank space
@@ -27,6 +28,7 @@ while exit != 1:
       file_path = os.path.join(current_dir, textFileName + ".txt")
       open(file_path, 'w')
       print("File Create")
+    
 
 
       

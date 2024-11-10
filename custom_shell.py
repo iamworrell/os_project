@@ -143,7 +143,6 @@ while exit != 1:
             print(f"File: {file_name}.txt")
             print(f"Size: {file_size} bytes")
             print(f"Permissions: {permissions}")
-            print(f"Last Modified: {modification_time}")
         else:
             print("Error: File does not exist")
 

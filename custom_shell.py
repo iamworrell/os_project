@@ -1,4 +1,5 @@
 import os
+import time
 
 print("Welcome to The terminal")
 print("Enter exit to Leave The terminal")
@@ -78,3 +79,49 @@ while exit != 1:
     print("create     Create file")
     print("rename     Renames a file")
     print("delete     deletes a file")
+
+  
+  # Modify file permissions
+  elif validated_input.startswith("modify"):
+    # Split input to get permissions and file name
+    array_of_data = validated_input.split()
+    if len(array_of_data) != 3:
+      print("Usage: modify <permissions> <file_name>")
+    else:
+      permissions = int(array_of_data[1], 8)  # Convert permissions from octal
+      file_name = array_of_data[2]
+      current_dir = os.path.dirname(__file__)
+      file_path = os.path.join(current_dir, file_name + ".txt")
+      if os.path.exists(file_path):
+          os.chmod(file_path, permissions)  # Modify permissions
+          print(f"Permissions for {file_name} modified to {oct(permissions)}")
+      else:
+          print("Error: File does not exist")
+
+  # List file attributes
+  elif validated_input.startswith("list -l"):
+      # Split input to get file name
+      array_of_data = validated_input.split()
+      if len(array_of_data) != 3:
+          print("Usage: list -l <file_name>")
+      else:
+          file_name = array_of_data[2]
+          current_dir = os.path.dirname(__file__)
+          file_path = os.path.join(current_dir, file_name + ".txt")
+          if os.path.exists(file_path):
+              stat_info = os.stat(file_path)
+              file_size = stat_info.st_size
+              # Get the last modified time
+              modification_time = time.ctime(stat_info.st_mtime)
+              # Get permissions
+              permissions = oct(stat_info.st_mode)[-3:]  # Get the last three digits of octal
+              print(f"File: {file_name}.txt")
+              print(f"Size: {file_size} bytes")
+              print(f"Permissions: {permissions}")
+              print(f"Last Modified: {modification_time}")
+          else:
+              print("Error: File does not exist")
+
+  # Exit Command
+  elif validated_input.startswith("exit"):
+      exit = 1

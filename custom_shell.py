@@ -79,8 +79,9 @@ while exit != 1:
     print("create     Create file")
     print("rename     Renames a file")
     print("delete     deletes a file")
-    print("modify     modifies a file")
-    print("list -l    list a files attributes")
+    print("modify     Modify file permissions")
+    print("list -l    List file attributes")
+    print("exit       Exit the terminal")
 
   
   # Modify file permissions
@@ -149,3 +150,6 @@ while exit != 1:
   # Exit Command
   elif validated_input.startswith("exit"):
       exit = 1
+
+  else:
+        print("Error: Unrecognized command. Type 'help' for a list of available commands.")

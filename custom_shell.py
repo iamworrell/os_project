@@ -1,3 +1,4 @@
+#authors: worrel smith, tian mcfarlane, demario scott, javan james
 import os
 import time
 

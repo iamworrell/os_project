@@ -25,6 +25,8 @@ while exit != 1:
       noBlankSpace = validated_input.replace(" ", "")
       #remove create from input and only get name of file we wish to create
       textFileName = noBlankSpace[6:]
+      
+      
       #create file in same directory
       current_dir = os.path.dirname(__file__)
       file_path = os.path.join(current_dir, textFileName + ".txt")
@@ -84,8 +86,37 @@ while exit != 1:
     print("list -l    List file attributes")
     print("exit       Exit the terminal")
 
-  
-  # Modify file permissions
+# Demario Scott Directory Code
+# Make Directory
+  elif validated_input.startswith("make"):
+        dir_name = validated_input.split(" ")[1]
+        if not os.path.exists(dir_name):
+            os.mkdir(dir_name)
+            print(f"Directory '{dir_name}' created")
+        else:
+            print(f"Error: Directory '{dir_name}' already exists")
+
+# Remove a Directory
+  elif validated_input.startswith("remove"):
+        dir_name = validated_input.split(" ")[1]
+        if os.path.exists(dir_name) and os.path.isdir(dir_name):
+            os.rmdir(dir_name)
+            print(f"Directory '{dir_name}' removed")
+        else:
+            print(f"Error: Directory '{dir_name}' does not exist or is not empty")
+
+# Change to a Directory location
+  elif validated_input.startswith("change"):
+        dir_name = validated_input.split(" ")[1]
+        if os.path.exists(dir_name) and os.path.isdir(dir_name):
+            os.chdir(dir_name)
+            print(f"Changed directory to '{dir_name}'")
+        else:
+            print(f"Error: Directory '{dir_name}' does not exist")
+
+# End of Demario Scott Directory Code
+
+# Modify file permissions
 
   #octal codes for the different permissions
     #octal code     Permission          Description
@@ -153,3 +184,5 @@ while exit != 1:
 
   else:
         print("Error: Unrecognized command. Type 'help' for a list of available commands.")
+
+

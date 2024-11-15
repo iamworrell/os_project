@@ -1,6 +1,7 @@
 #authors: worrel seville, tian mcfarlane, demario scott, javan james
 import os
 import time
+import sys
 
 print("Welcome to The terminal")
 print("Enter exit to Leave The terminal")
@@ -465,3 +466,50 @@ while exit != 1:
     elif validated_input.startswith("exit") or pipe_validated_input.startswith("exit"):
       exit = 1
       validated_input = temp_validated_input
+      
+      
+      
+# Input/Output Redirection
+def handle_redirection(command):
+    # Check for output redirection, i.e., if the command includes '>'
+    if ">" in command:
+        # Split the command into two parts: the command itself and the output filename
+        command, filename = command.split(">")
+        filename = filename.strip()  # Remove any extra spaces from the filename
+        sys.stdout = open(filename, 'w')  # Redirect standard output to the specified file
+        execute_command(command.strip())   # Execute the command, with its output redirected to the file
+        sys.stdout.close()                 # Close the file after writing output
+        sys.stdout = sys.__stdout__        # Restore standard output back to the console
+
+    # Check for input redirection, i.e., if the command includes '<'
+    elif "<" in command:
+        # Split the command into two parts: the command itself and the input filename
+        command, filename = command.split("<")
+        filename = filename.strip()  # Remove any extra spaces from the filename
+        sys.stdin = open(filename, 'r')    # Redirect standard input to read from the specified file
+        execute_command(command.strip())    # Execute the command, with its input redirected from the file
+        sys.stdin.close()                  # Close the file after reading input
+        sys.stdin = sys.__stdin__          # Restore standard input back to the console
+
+    else:
+        # If there is no redirection in the command, execute it normally
+        execute_command(command)
+
+def execute_command(command):
+    # Parse the command and execute corresponding functions
+    # Here, you would replace `pass` with the actual function to handle each command
+    if command.startswith("create"):
+        # Call the create function (to be implemented elsewhere)
+        pass
+    elif command.startswith("delete"):
+        # Call the delete function (to be implemented elsewhere)
+        pass
+    # Continue adding conditions for other commands as needed
+    else:
+        # If the command doesn't match any known commands, print an error message
+        print(f"Unrecognized command: {command}")
+
+# Example usage within your shell loop:
+while exit != 1:
+    initialize()  # Get the user input (defined elsewhere in the code)
+    handle_redirection(validated_input)  # Process and handle any redirection in the input
